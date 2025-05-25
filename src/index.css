@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-dark-300 text-gray-100 font-sans relative overflow-x-hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-200;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-700 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-600;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-all duration-200 
+    focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-opacity-50;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary-500 hover:bg-primary-600 text-white;
+  }
+
+  .btn-secondary {
+    @apply btn bg-dark-100 hover:bg-dark-200 text-white border border-primary-700;
+  }
+
+  .btn-accent {
+    @apply btn bg-accent-purple hover:bg-accent-pink text-white;
+  }
+
+  .btn-danger {
+    @apply btn bg-error hover:bg-error/80 text-white;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2 bg-dark-200 border border-dark-100 focus:border-primary-500
+    rounded-md text-white placeholder:text-gray-500 focus:ring-2 focus:ring-primary-300
+    focus:ring-opacity-50 focus:outline-none transition-all duration-200;
+  }
+
+  .card {
+    @apply bg-dark-100 rounded-lg border border-dark-200 shadow-lg overflow-hidden
+    transition-all duration-300 hover:shadow-primary-900/20 hover:border-primary-800/40;
+  }
+
+  .terminal-text {
+    @apply font-mono text-sm;
+  }
+
+  .cyberpunk-grid {
+    @apply relative;
+  }
+
+  .cyberpunk-grid::before {
+    content: "";
+    @apply absolute inset-0 bg-[linear-gradient(rgba(56,189,248,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.1)_1px,transparent_1px)]
+    bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]
+    -z-10;
+  }
+
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-accent-purple;
+  }
+
+  .glow-effect {
+    @apply relative;
+  }
+
+  .glow-effect::after {
+    content: "";
+    @apply absolute inset-0 rounded-md -z-10 opacity-50 blur-md
+    bg-gradient-to-r from-primary-500/25 to-accent-purple/25;
+  }
+
+  .scanner-beam {
+    @apply absolute top-0 left-0 right-0 h-10 bg-gradient-to-b from-primary-300/80 to-transparent z-10;
+  }
+
+  .glass-effect {
+    @apply bg-dark-200/80 backdrop-blur-md border border-primary-900/30;
+  }
+
+  .animated-border {
+    @apply relative rounded-lg p-px;
+  }
+
+  .animated-border::before {
+    content: "";
+    @apply absolute inset-0 rounded-lg bg-gradient-to-r from-primary-500 via-accent-purple to-accent-pink
+    animate-gradient bg-[length:200%_200%] -z-10;
+  }
+}
