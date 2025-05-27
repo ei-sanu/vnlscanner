@@ -8,14 +8,14 @@ import ScanResults from '../components/scanner/ScanResults';
 const ScannerPage: React.FC = () => {
   const { url, setUrl, scanUrl, isScanning, scanResult, error, clearScan } = useScannerStore();
   const [formError, setFormError] = useState('');
-  
+
   // Reset scan on unmount
   useEffect(() => {
     return () => {
       clearScan();
     };
   }, [clearScan]);
-  
+
   // Update form error when store error changes
   useEffect(() => {
     if (error) {
@@ -24,24 +24,24 @@ const ScannerPage: React.FC = () => {
       setFormError('');
     }
   }, [error]);
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setFormError('');
-    
+
     // Basic URL validation
     if (!url.trim()) {
       setFormError('Please enter a URL to scan');
       return;
     }
-    
+
     // Check if URL has protocol
     let urlToScan = url;
     if (!/^https?:\/\//i.test(urlToScan)) {
       urlToScan = 'https://' + urlToScan;
       setUrl(urlToScan);
     }
-    
+
     // Try to create a URL object to validate
     try {
       new URL(urlToScan);
@@ -49,15 +49,15 @@ const ScannerPage: React.FC = () => {
       setFormError('Please enter a valid URL');
       return;
     }
-    
+
     // Submit for scanning
     scanUrl(urlToScan);
   };
-  
+
   return (
     <div className="max-w-5xl mx-auto">
       <div className="mb-8 text-center">
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
@@ -71,11 +71,11 @@ const ScannerPage: React.FC = () => {
           transition={{ duration: 0.3, delay: 0.1 }}
           className="text-gray-300 max-w-2xl mx-auto"
         >
-          Enter a website URL to scan for security vulnerabilities. This educational tool will analyze 
+          Enter a website URL to scan for security vulnerabilities. This educational tool will analyze
           the target site and provide detailed information about potential security issues.
         </motion.p>
       </div>
-      
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -87,7 +87,7 @@ const ScannerPage: React.FC = () => {
             <Shield className="h-6 w-6" />
             <h2 className="text-xl font-semibold">Security Scanner</h2>
           </div>
-          
+
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label htmlFor="url" className="block text-sm font-medium text-gray-300 mb-1">
@@ -114,7 +114,7 @@ const ScannerPage: React.FC = () => {
                 </div>
               )}
             </div>
-            
+
             <div className="flex items-center justify-between">
               <button
                 type="submit"
@@ -133,7 +133,7 @@ const ScannerPage: React.FC = () => {
                   </>
                 )}
               </button>
-              
+
               <button
                 type="button"
                 onClick={clearScan}
@@ -144,7 +144,7 @@ const ScannerPage: React.FC = () => {
               </button>
             </div>
           </form>
-          
+
           <div className="mt-6 flex flex-col gap-3 text-sm text-gray-400">
             <div className="flex items-start gap-2">
               <Lock className="h-4 w-4 mt-0.5 text-primary-300 flex-shrink-0" />
@@ -161,7 +161,7 @@ const ScannerPage: React.FC = () => {
           </div>
         </div>
       </motion.div>
-      
+
       {/* Scanning Animation */}
       {isScanning && (
         <motion.div
@@ -174,7 +174,7 @@ const ScannerPage: React.FC = () => {
             <h3 className="text-lg font-semibold text-primary-300">Scanning in Progress</h3>
             <p className="text-gray-400 text-sm">Analyzing {url} for security vulnerabilities</p>
           </div>
-          
+
           <div className="h-64 relative border border-primary-900/30 rounded-md bg-dark-300 overflow-hidden">
             {/* Scanner beam animation */}
             <motion.div
@@ -182,7 +182,7 @@ const ScannerPage: React.FC = () => {
               animate={{ top: ['0%', '100%', '0%'] }}
               transition={{ duration: 3, repeat: Infinity }}
             />
-            
+
             {/* Terminal-like text */}
             <div className="p-4 h-full overflow-hidden terminal-text text-xs">
               <motion.div
@@ -192,7 +192,7 @@ const ScannerPage: React.FC = () => {
               >
                 <p className="text-green-400 mb-1">{'>'} Initializing security scan...</p>
               </motion.div>
-              
+
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -200,7 +200,7 @@ const ScannerPage: React.FC = () => {
               >
                 <p className="text-green-400 mb-1">{'>'} Target: {url}</p>
               </motion.div>
-              
+
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -208,7 +208,7 @@ const ScannerPage: React.FC = () => {
               >
                 <p className="text-green-400 mb-1">{'>'} Checking for XSS vulnerabilities...</p>
               </motion.div>
-              
+
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -216,7 +216,7 @@ const ScannerPage: React.FC = () => {
               >
                 <p className="text-green-400 mb-1">{'>'} Analyzing server headers...</p>
               </motion.div>
-              
+
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -224,7 +224,7 @@ const ScannerPage: React.FC = () => {
               >
                 <p className="text-green-400 mb-1">{'>'} Testing for SQL injection...</p>
               </motion.div>
-              
+
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -234,7 +234,7 @@ const ScannerPage: React.FC = () => {
               </motion.div>
             </div>
           </div>
-          
+
           <div className="mt-4 flex justify-center">
             <div className="flex items-center gap-2 text-sm text-gray-400">
               <span className="animate-spin h-4 w-4 border-2 border-primary-300 border-t-transparent rounded-full"></span>
@@ -243,7 +243,7 @@ const ScannerPage: React.FC = () => {
           </div>
         </motion.div>
       )}
-      
+
       {/* Scan Results */}
       {scanResult && !isScanning && (
         <ScanResults scanResult={scanResult} />

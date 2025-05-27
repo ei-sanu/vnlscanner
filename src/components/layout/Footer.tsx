@@ -19,16 +19,16 @@ const Footer: React.FC = () => {
               cybersecurity awareness.
             </p>
             <div className="flex items-center space-x-3">
-              <a href="#" className="text-gray-400 hover:text-primary-300 transition">
+              <a href="https://github.com/ei-sanu" className="text-gray-400 hover:text-primary-300 transition">
                 <Github size={18} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-primary-300 transition">
+              <a href="https://x.com/SomeshR82674271" className="text-gray-400 hover:text-primary-300 transition">
                 <Twitter size={18} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-primary-300 transition">
+              <a href="https://www.linkedin.com/in/somesh-biswal-b73576320" className="text-gray-400 hover:text-primary-300 transition">
                 <Linkedin size={18} />
               </a>
-              <a href="mailto:contact@example.com" className="text-gray-400 hover:text-primary-300 transition">
+              <a href="mailto:someshranjanbiswal13678@gmail.com" className="text-gray-400 hover:text-primary-300 transition">
                 <Mail size={18} />
               </a>
             </div>
